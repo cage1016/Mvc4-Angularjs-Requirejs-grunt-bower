@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using Requirejs.Helpers
+
+<!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8" />
@@ -42,7 +44,15 @@
             </div>
         </footer>
 
-        @Scripts.Render("~/bundles/jquery")
-        @RenderSection("scripts", required: false)
+    <!-- Le javascript
+        ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->    
+    <script src="~/Scripts/require.js"></script>
+
+    <script type="text/javascript">
+        var host = '@Url.Content("~/")';
+        @Html.ViewSpecificRequireJS()
+    </script>
+    @RenderSection("scripts", required: false)
     </body>
 </html>
