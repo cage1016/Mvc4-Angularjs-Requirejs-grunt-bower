@@ -95,7 +95,7 @@ _vti_pvt/
 #Ignore private folder
 /Private/
 
-bower_components*/
+vendor*/
 node_modules*/
 temp
 .tmp

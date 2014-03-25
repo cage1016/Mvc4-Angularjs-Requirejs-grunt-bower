@@ -217,6 +217,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="git.ignore" />
+    <Content Include="Public\Gruntfile.js" />
     <Content Include="Public\_Build\build.js">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -226,6 +227,8 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>build.js</LastGenOutput>
     </Content>
+    <Content Include="Public\bower.json" />
+    <Content Include="Public\.bowerrc" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Public\js\app.js" />
     <Content Include="Public\js\config.js" />
@@ -288,7 +291,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Public\js\vendor\" />
     <Folder Include="Public\release\" />
   </ItemGroup>
   <ItemGroup>
