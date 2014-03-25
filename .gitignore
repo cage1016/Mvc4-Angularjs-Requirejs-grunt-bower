@@ -96,3 +96,7 @@ _vti_pvt/
 /Private/
 
 bower_components*/
+node_modules*/
+temp
+.tmp
+release*/
