@@ -1,0 +1,18 @@
+﻿{
+    "name": "mvc-angular",
+    "version": "0.1.0",
+    "description": "RequireJS plugin for MVC4 AngularJS",    
+    "author": "Kai-chu Chung",
+    "license": "MIT",
+    
+    "dependencies": {},
+    "devDependencies": {    
+		"grunt": "~0.4.2",
+		"grunt-contrib-jshint": "~0.6.3",
+		"grunt-contrib-copy": "~0.4.1",
+		"grunt-contrib-nodeunit": "~0.2.0",
+		"grunt-contrib-uglify": "~0.2.2",
+		"load-grunt-tasks": "~0.1.0",
+		"grunt-contrib-clean": "~0.5.0"
+    }
+}
