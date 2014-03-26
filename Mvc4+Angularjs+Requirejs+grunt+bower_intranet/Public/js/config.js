@@ -2,21 +2,21 @@
     baseUrl: "/mvc-project/public/js",
     waitSeconds: 200,
     paths: {
-        'domReady': 'bower_components/requirejs-domready/domReady',
+        'domReady': 'vendor/requirejs-domready/domReady',
 
-        'angular': 'bower_components/angular/angular',
-        'angular.zh-tw': 'bower_components/angular-i18n/angular-locale_zh-tw',
-        'angular.route': 'bower_components/angular-route/angular-route',
-        'angular.resource': 'bower_components/angular-resource/angular-resource',
-        'angular.animate': 'bower_components/angular-animate/angular-animate',        
-        'angular.sanitize': 'bower_components/angular-sanitize/angular-sanitize',
+        'angular': 'vendor/angular/angular',
+        'angular.zh-tw': 'vendor/angular-i18n/angular-locale_zh-tw',
+        'angular.route': 'vendor/angular-route/angular-route',
+        'angular.resource': 'vendor/angular-resource/angular-resource',
+        'angular.animate': 'vendor/angular-animate/angular-animate',        
+        'angular.sanitize': 'vendor/angular-sanitize/angular-sanitize',
 
-        'moment': 'bower_components/moment/moment',
-        'bootstrap': 'bower_components/bootstrap/dist/js/bootstrap',
+        'moment': 'vendor/moment/moment',
+        'bootstrap': 'vendor/bootstrap/dist/js/bootstrap',
         
-        'jquery': 'bower_components/jquery/jquery',
+        'jquery': 'vendor/jquery/jquery',
 
-        'respond': 'bower_components/respond/dest/respond.src',        
+        'respond': 'vendor/respond/dest/respond.src',
     },
     shim: {
         'angular': {
