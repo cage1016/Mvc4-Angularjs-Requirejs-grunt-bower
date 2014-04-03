@@ -23,7 +23,11 @@ namespace Mvc4_Angularjs_Requirejs_grunt_bower_intranet
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/site.css"));
+#if DEBUG
+            bundles.Add(new StyleBundle("~/Content/css").Include("~/Public/js/css/Site.css"));
+#else
+            bundles.Add(new StyleBundle("~/Content/css").Include("~/Public/release/css/main.css"));
+#endif
 
             bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(
                         "~/Content/themes/base/jquery.ui.core.css",

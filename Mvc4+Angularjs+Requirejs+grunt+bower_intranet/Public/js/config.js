@@ -12,9 +12,9 @@
         'angular.sanitize': 'vendor/angular-sanitize/angular-sanitize',
 
         'moment': 'vendor/moment/moment',
-        'bootstrap': 'vendor/bootstrap/dist/js/bootstrap',
+        'bootstrap': 'vendor/bootstrap/dist/js/bootstrap.min',
         
-        'jquery': 'vendor/jquery/jquery',
+        'jquery': 'vendor/jquery/jquery.min',
 
         'respond': 'vendor/respond/dest/respond.src',
     },

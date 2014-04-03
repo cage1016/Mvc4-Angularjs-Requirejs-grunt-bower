@@ -60,7 +60,7 @@ module.exports = function (grunt) {
                     {
                         expand: true,
                         cwd: '<%= mvc.js %>/vendor/jquery/',
-                        src: 'jquery.js',
+                        src: 'jquery.min.js',
                         dest: '<%= mvc.tmp %>/vendor'
                     },
                     {
@@ -84,7 +84,7 @@ module.exports = function (grunt) {
                     {                        
                         expand: true,
                         cwd: '<%= mvc.js %>/vendor/bootstrap/dist/js',
-                        src: 'bootstrap.js',
+                        src: 'bootstrap.min.js',
                         dest: '<%= mvc.tmp %>/vendor'
                     }
                 ]
@@ -96,7 +96,28 @@ module.exports = function (grunt) {
                     src: ['app.js', 'config.js','controllers/**', 'directives/**', 'filters/**', 'services/**','views/**', 'helpers/**'],
                     dest: "<%= mvc.tmp %>"
                 }]
-            }            
+            },
+            basic: {
+                files: [{
+                    expand: true,
+                    cwd: '<%= mvc.tmp %>/vendor',
+                    src: ['jquery.min.js', 'bootstrap.min.js'],
+                    dest: '<%= mvc.release %>/vendor'
+                }]
+            },
+            css: {
+                files: [{
+                    expand: true,
+                    cwd: '<%= mvc.js %>/css',
+                    src: ['Site.css'],
+                    dest: '<%= mvc.tmp %>/css'
+                }, {
+                    expand: true,
+                    cwd: '<%= mvc.js %>/css/fonts',
+                    src: ['*.*'],
+                    dest: '<%= mvc.release %>/fonts'
+                }]
+            }
         },
         requirejs: {
             compile: {
@@ -106,7 +127,7 @@ module.exports = function (grunt) {
                     dir: '<%= mvc.release %>',                    
                     removeCombined: true,                    
                     paths: {
-                        'jquery': '../<%= mvc.tmp %>/vendor/jquery',
+                        'jquery': '../<%= mvc.tmp %>/vendor/jquery.min',
                         'angular': '../<%= mvc.tmp %>/vendor/angular',
                         'angular.zh-tw': '../<%= mvc.tmp %>/vendor/angular-locale_zh-tw',
                         'angular.route': '../<%= mvc.tmp %>/vendor/angular-route',
@@ -116,7 +137,7 @@ module.exports = function (grunt) {
                         'moment': '../<%= mvc.tmp %>/vendor/moment',
                         'respond': '../<%= mvc.tmp %>/vendor/respond',
                         'domReady': '../<%= mvc.tmp %>/vendor/domReady',
-                        'bootstrap': '../<%= mvc.tmp %>/vendor/bootstrap',
+                        'bootstrap': '../<%= mvc.tmp %>/vendor/bootstrap.min',
                     },
                     shim: {
                         'angular': {
@@ -135,11 +156,23 @@ module.exports = function (grunt) {
                         }
                     ],
                     onBuildRead: function (moduleName, path, contents) {
-                        if (moduleName === "config") {
-                            return contents.replace(/\/public\/js/g, "/public/release")
+                        if (moduleName === 'config') {
+
+                            var x = (function (contents) {
+                                var regex = /'(vendor|libs)[^']*'/gm;
+                                var matches = contents.match(regex);
+                                for (var i = 0; i < matches.length; i++) {
+                                    var match = matches[i];
+                                    var m = matches[i].split('/');
+                                    contents = contents.replace(match, '\'vendor/' + m[m.length - 1]);
+                                }
+                                return contents;
+                            })(contents);
+
+                            return x.replace(/\/public\/js/g, '/public/release');
                         }
                         return contents;
-                    },
+                    }
                 }
             }
         },
@@ -173,6 +206,13 @@ module.exports = function (grunt) {
                     }
                 ]
             }
+        },
+        cssmin: {
+            combine: {
+                files: {
+                    '<%= mvc.release %>/css/main.css': ['<%= mvc.tmp %>/css/*.css']
+                }
+            }
         }
     });
 
@@ -191,9 +231,10 @@ module.exports = function (grunt) {
        'clean:tmp',
        'copy:vendor',
        'copy:module',
-       //'concat',
-       //'uglify'
        'requirejs',
+       'copy:basic',
+       'copy:css',
+       'cssmin',
        'clean:tmp',
        'htmlmin'
     ]);
